@@ -116,6 +116,7 @@ type (
 		Xaxis           Axis             `json:"xaxis"` // was added in Grafana 4.x?
 		Yaxes           []Axis           `json:"yaxes"` // was added in Grafana 4.x?
 		Decimals        *uint            `json:"decimals,omitempty"`
+		Thresholds      []Threshold      `json:"thresholds"`
 	}
 	Tooltip struct {
 		Shared       bool   `json:"shared"`
@@ -231,6 +232,13 @@ type (
 		YAxis         *int        `json:"yaxis,omitempty"`
 		ZIndex        *int        `json:"zindex,omitempty"`
 		NullPointMode *string     `json:"nullPointMode,omitempty"`
+	}
+	Threshold struct {
+		ColorMode string `json:"colorMode"`
+		Fill      bool   `json:"fill"`
+		Line      bool   `json:"line"`
+		Operation string `json:"op"`
+		Value     int64  `json:"value"`
 	}
 )
 
