@@ -115,6 +115,7 @@ type (
 		IconSize   uint    `json:"iconSize"`
 		Enable     bool    `json:"enable"`
 		Query      string  `json:"query"`
+		Target     string  `json:"target"`
 		TextField  string  `json:"textField"`
 	}
 )
