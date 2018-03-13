@@ -20,12 +20,11 @@ package sdk
 
 // Row represents single row of Grafana dashboard.
 type Row struct {
-	Title     string  `json:"title"`
-	ShowTitle bool    `json:"showTitle"`
-	Collapse  bool    `json:"collapse"`
-	Editable  bool    `json:"editable"`
-	Height    height  `json:"height"`
-	Panels    []Panel `json:"panels"`
+	Title    string  `json:"title"`
+	Collapse bool    `json:"collapse"`
+	Editable bool    `json:"editable"`
+	Height   height  `json:"height"`
+	Panels   []Panel `json:"panels"`
 }
 
 var lastPanelID uint
