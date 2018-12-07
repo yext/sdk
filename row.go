@@ -23,8 +23,9 @@ type Row struct {
 	Title    string  `json:"title"`
 	Collapse bool    `json:"collapse"`
 	Editable bool    `json:"editable"`
-	Height   height  `json:"height"`
+	Height   Height  `json:"height"`
 	Panels   []Panel `json:"panels"`
+	Repeat   *string `json:"repeat"`
 }
 
 var lastPanelID uint

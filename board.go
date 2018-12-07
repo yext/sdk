@@ -41,6 +41,7 @@ type (
 	// Board represents Grafana dashboard.
 	Board struct {
 		ID              uint       `json:"id,omitempty"`
+		UID             string     `json:"uid,omitempty"`
 		Slug            string     `json:"slug"`
 		Title           string     `json:"title"`
 		OriginalTitle   string     `json:"originalTitle"`
@@ -51,6 +52,7 @@ type (
 		Editable        bool       `json:"editable"`
 		HideControls    bool       `json:"hideControls" graf:"hide-controls"`
 		SharedCrosshair bool       `json:"sharedCrosshair" graf:"shared-crosshair"`
+		Panels          []*Panel   `json:"panels"`
 		Rows            []*Row     `json:"rows"`
 		Templating      Templating `json:"templating"`
 		Annotations     struct {
@@ -63,6 +65,7 @@ type (
 		Time          Time        `json:"time"`
 		Timepicker    Timepicker  `json:"timepicker"`
 		lastPanelID   uint
+		GraphTooltip  int `json:"graphTooltip,omitempty"`
 	}
 	Time struct {
 		From string `json:"from"`
@@ -86,6 +89,7 @@ type (
 		Options     []Option `json:"options"`
 		IncludeAll  bool     `json:"includeAll"`
 		AllFormat   string   `json:"allFormat"`
+		AllValue    string   `json:"allValue"`
 		Multi       bool     `json:"multi"`
 		MultiFormat string   `json:"multiFormat"`
 		Query       string   `json:"query"`
@@ -93,6 +97,7 @@ type (
 		Current     Current  `json:"current"`
 		Label       string   `json:"label"`
 		Hide        uint8    `json:"hide"`
+		Sort        int      `json:"sort"`
 	}
 	// for templateVar
 	Option struct {
@@ -137,11 +142,11 @@ type link struct {
 	URL         *string  `json:"url,omitempty"`
 }
 
-// height of rows maybe passed as number (ex 200) or
+// Height of rows maybe passed as number (ex 200) or
 // as string (ex "200px") or empty string
-type height string
+type Height string
 
-func (h *height) UnmarshalJSON(raw []byte) error {
+func (h *Height) UnmarshalJSON(raw []byte) error {
 	if raw == nil || bytes.Compare(raw, []byte(`"null"`)) == 0 {
 		return nil
 	}
@@ -152,7 +157,7 @@ func (h *height) UnmarshalJSON(raw []byte) error {
 	}
 	var tmp string
 	err := json.Unmarshal(raw, &tmp)
-	*h = height(tmp)
+	*h = Height(tmp)
 	return err
 }
 
