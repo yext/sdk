@@ -91,6 +91,7 @@ type (
 		Fill        int         `json:"fill"`
 		//		Grid        grid        `json:"grid"` obsoleted in 4.1 by xaxis and yaxis
 
+		Interval *string `json:"interval,omitempty"`
 		Legend struct {
 			AlignAsTable bool  `json:"alignAsTable"`
 			Avg          bool  `json:"avg"`
