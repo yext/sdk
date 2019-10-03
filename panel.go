@@ -232,6 +232,7 @@ type (
 		Values *[]string   `json:"values,omitempty"`
 	}
 	Axis struct {
+		Label   string       `json:"label"`
 		Format  string       `json:"format"`
 		LogBase int          `json:"logBase"`
 		Max     *FloatString `json:"max,omitempty"`
